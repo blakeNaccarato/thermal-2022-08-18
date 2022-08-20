@@ -1,0 +1,21 @@
+##include "/root/thermal-2022-08-18/BasicThermal/BasicThermal.hh"
+
+class MySimObject: public Trick::SimObject
+{
+    public:
+        BasicThermal model;
+        MySimObject() {
+            ("initialization") model.initialize();
+            (1.0, "scheduled") model.update(1.0);
+        }
+
+        virtual ~MySimObject() { /* nothing to do */ }
+
+    private:
+        // Copy constructor unavailable since declared private and not implemented.
+        MySimObject(const MySimObject&);
+        // Assignment operator unavailable since declared private and not implemented.
+        MySimObject operator = (const MySimObject&);
+};
+
+MySimObject mySimObject;

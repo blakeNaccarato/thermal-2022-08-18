@@ -1,0 +1,43 @@
+{
+	"folders": [
+		{
+			"path": "/root"
+		},
+		{
+			"path": "/home"
+		}
+	],
+	"settings": {
+		"terminal.integrated.defaultProfile.linux": "tcsh",
+		"git.ignoredRepositories": [
+			"gunns",
+			"trick"
+		],
+		"[plaintext]": {"editor.wordWrap": "off"},
+		"files.associations": {
+			"*.sm": "cpp",
+		  },
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "netexport",
+				"type": "shell",
+				"command": "python /home/gunns/draw/netexport.py ${input:input}",
+				"problemMatcher": []
+			}
+		],
+		"inputs": [
+			{
+				"id": "input",
+				"type": "pickString",
+				"description": "Drawing to export",
+				"options": [
+					"",
+					"/root/thermal-2022-08-18/basicThermal/BasicThermal.drawio"
+				]
+			}
+		],
+	}
+}
