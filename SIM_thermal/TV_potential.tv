@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<trickView>
+    <cyclePeriod>0.1</cyclePeriod>
+    <variable>
+        <name>mySimObject.model.netNodes[0].mPotential</name>
+        <tvDouble>
+            <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">119.9890919007363</value>
+            <format>Decimal</format>
+        </tvDouble>
+        <state>Valid</state>
+        <units>--</units>
+    </variable>
+    <variable>
+        <name>mySimObject.model.netNodes[1].mPotential</name>
+        <tvDouble>
+            <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">109.080992637033</value>
+            <format>Decimal</format>
+        </tvDouble>
+        <state>Valid</state>
+        <units>--</units>
+    </variable>
+    <variable>
+        <name>mySimObject.model.netNodes[2].mPotential</name>
+        <tvDouble>
+            <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+            <format>Decimal</format>
+        </tvDouble>
+        <state>Valid</state>
+        <units>--</units>
+    </variable>
+</trickView>
