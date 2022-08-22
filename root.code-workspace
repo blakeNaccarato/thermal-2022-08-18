@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "/home"
+		},
+		{
+			"path": "SIM_thermal"
 		}
 	],
 	"settings": {
