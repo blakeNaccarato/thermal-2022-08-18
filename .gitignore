@@ -1,7 +1,9 @@
 # My modifications
 *.bkp
 *.dtmp
-gunns/
+*.cpp
+*.hh
+*.xml.bak
 
 #! From gunns/sims/.gitignore
 
