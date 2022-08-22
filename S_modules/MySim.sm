@@ -4,17 +4,19 @@ class MySimObject: public Trick::SimObject
 {
     public:
         BasicThermal model;
-        MySimObject() {
-            ("initialization") model.initialize();
-            (1.0, "scheduled") model.update(1.0);
-        }
 
-        virtual ~MySimObject() { /* nothing to do */ }
+        MySimObject()
+            :
+            model("mySimObject.model")
+        {
+            ("initialization") model.initialize("mySimObject.model");
+            ("restart") model.restart();
+            (RATE, "scheduled") model.update(RATE);
+        }
+        virtual ~MySimObject() {}
 
     private:
-        // Copy constructor unavailable since declared private and not implemented.
         MySimObject(const MySimObject&);
-        // Assignment operator unavailable since declared private and not implemented.
         MySimObject operator = (const MySimObject&);
 };
 
