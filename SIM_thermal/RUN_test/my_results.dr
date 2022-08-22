@@ -7,14 +7,22 @@ except NameError:
     DR_GROUP_ID = 0
     drg = []
 
-drg.append(trick.DRBinary("nodes"))
+drg.append(trick.DRBinary("my_results"))
 drg[DR_GROUP_ID].set_freq(trick.DR_Always)
-drg[DR_GROUP_ID].set_cycle(0.1)
+drg[DR_GROUP_ID].set_cycle(0.01)
 drg[DR_GROUP_ID].set_single_prec_only(False)
 drg[DR_GROUP_ID].add_variable("mySimObject.model.netNodes[0].mPotential")
 drg[DR_GROUP_ID].add_variable("mySimObject.model.netNodes[1].mPotential")
 drg[DR_GROUP_ID].add_variable("mySimObject.model.netNodes[2].mPotential")
 drg[DR_GROUP_ID].add_variable("mySimObject.model.netNodes[3].mPotential")
+drg[DR_GROUP_ID].add_variable("mySimObject.model.netNodeList.mNodes[0].mPotential")
+drg[DR_GROUP_ID].add_variable("mySimObject.model.netNodeList.mNodes[0].mNetFlux")
+drg[DR_GROUP_ID].add_variable("mySimObject.model.netNodeList.mNumNodes")
+drg[DR_GROUP_ID].add_variable("mySimObject.model.potential.mNodes[0][0].mPotential")
+drg[DR_GROUP_ID].add_variable("mySimObject.model.capacitor.mPower")
+drg[DR_GROUP_ID].add_variable("mySimObject.model.capacitor.mFlux")
+drg[DR_GROUP_ID].add_variable("mySimObject.model.capacitor.mPotentialDrop")
+drg[DR_GROUP_ID].add_variable("mySimObject.model.capacitor.mPotentialVector[0]")
 drg[DR_GROUP_ID].set_max_file_size(1 * 1073741824) # multiply converts GiB to B --Dr. Dre
 trick.add_data_record_group(drg[DR_GROUP_ID], trick.DR_Buffer)
 drg[DR_GROUP_ID].enable()
