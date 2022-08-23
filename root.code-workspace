@@ -6,9 +6,6 @@
 		{
 			"path": "/home"
 		},
-		{
-			"path": "SIM_thermal"
-		}
 	],
 	"settings": {
 		"terminal.integrated.defaultProfile.linux": "tcsh",
@@ -25,9 +22,9 @@
 		"version": "2.0.0",
 		"tasks": [
 			{
-				"label": "netexport BasicThermal",
+				"label": "netexport <default_network>",
 				"type": "shell",
-				"command": "python /home/gunns/draw/netexport.py /root/thermal-2022-08-18/BasicThermal/BasicThermal.xml",
+				"command": "python /home/gunns/draw/netexport.py /root/thermal-2022-08-18/SIM_thermal/network/Network.xml",
 				"problemMatcher": []
 			},
 			{
@@ -43,8 +40,8 @@
 				"type": "pickString",
 				"description": "Drawing to export",
 				"options": [
-					"",
-					"/root/thermal-2022-08-18/BasicThermal/BasicThermal.xml"
+					"", // Triggers the GUI
+					"/root/thermal-2022-08-18/SIM_thermal/network/Network.xml"
 				]
 			}
 		],
