@@ -25,6 +25,12 @@
 		"version": "2.0.0",
 		"tasks": [
 			{
+				"label": "netexport BasicThermal",
+				"type": "shell",
+				"command": "python /home/gunns/draw/netexport.py /root/thermal-2022-08-18/BasicThermal/BasicThermal.xml",
+				"problemMatcher": []
+			},
+			{
 				"label": "netexport",
 				"type": "shell",
 				"command": "python /home/gunns/draw/netexport.py ${input:input}",
