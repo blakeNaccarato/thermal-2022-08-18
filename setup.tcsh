@@ -1,7 +1,7 @@
 #!/bin/tcsh
-# Source the `.cshrc` from this repo to the root user.
+# Source the `.tcshrc` from this repo to the root user.
 
-cat <<EOF > .cshrc
+cat <<EOF > .tcshrc
 #!/bin/tcsh
-source thermal-2022-08-18/.cshrc
+source /root/gunns_sims/.tcshrc
 EOF

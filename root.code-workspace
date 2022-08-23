@@ -24,7 +24,7 @@
 			{
 				"label": "netexport <default_network>",
 				"type": "shell",
-				"command": "python /home/gunns/draw/netexport.py /root/thermal-2022-08-18/SIM_thermal/network/Network.xml",
+				"command": "python /home/gunns/draw/netexport.py /root/gunns-sims/SIM_thermal/network/Network.xml",
 				"problemMatcher": []
 			},
 			{
@@ -41,7 +41,7 @@
 				"description": "Drawing to export",
 				"options": [
 					"", // Triggers the GUI
-					"/root/thermal-2022-08-18/SIM_thermal/network/Network.xml"
+					"/root/gunns-sims/SIM_thermal/network/Network.xml"
 				]
 			}
 		],

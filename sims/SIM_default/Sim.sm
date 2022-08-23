@@ -1,4 +1,4 @@
-##include "/root/thermal-2022-08-18/SIM_default/network/Network.hh"
+##include "/root/gunns-sims/SIM_default/network/Network.hh"
 
 #define RATE 0.1
 
