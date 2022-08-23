@@ -2,5 +2,8 @@ services:
   main:
     build: .
     volumes:
-      - ".:/root/gunns-sims"
+      - "volume:/root/gunns-sims"
     stdin_open: true
+
+volumes:
+  volume:
