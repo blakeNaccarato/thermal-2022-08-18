@@ -1,6 +1,9 @@
 {
 	"folders": [
 		{
+			"path": "."
+		},
+		{
 			"path": "/root"
 		},
 		{
@@ -8,7 +11,6 @@
 		},
 	],
 	"settings": {
-		"terminal.integrated.defaultProfile.linux": "tcsh",
 		"git.ignoredRepositories": [
 			"gunns",
 			"trick"

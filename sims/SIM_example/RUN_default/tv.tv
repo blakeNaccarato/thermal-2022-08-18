@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<trickView>
+    <cyclePeriod>0.1</cyclePeriod>
+    <variable>
+        <name>trick_sys.name</name>
+        <tvString>
+            <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">trick_sys</value>
+            <format>String</format>
+        </tvString>
+        <state>Valid</state>
+        <units>--</units>
+    </variable>
+</trickView>
