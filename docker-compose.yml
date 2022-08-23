@@ -1,0 +1,6 @@
+services:
+  gunns_loaded2:
+    volumes:
+      - .:/root/gunns-sims
+    depends_on:
+      - gunns_loaded
