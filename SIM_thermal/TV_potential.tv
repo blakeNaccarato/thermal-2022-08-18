@@ -4,7 +4,7 @@
     <variable>
         <name>mySimObject.model.netNodes[0].mPotential</name>
         <tvDouble>
-            <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">119.9890919007363</value>
+            <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">100.0</value>
             <format>Decimal</format>
         </tvDouble>
         <state>Valid</state>
@@ -13,7 +13,7 @@
     <variable>
         <name>mySimObject.model.netNodes[1].mPotential</name>
         <tvDouble>
-            <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">109.080992637033</value>
+            <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">200.0</value>
             <format>Decimal</format>
         </tvDouble>
         <state>Valid</state>
@@ -31,7 +31,7 @@
     <variable>
         <name>mySimObject.model.Resistor1.mEffectiveConductivity</name>
         <tvDouble>
-            <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">1.0E-5</value>
+            <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">1.0</value>
             <format>Decimal</format>
         </tvDouble>
         <state>Valid</state>
@@ -40,7 +40,16 @@
     <variable>
         <name>mySimObject.model.Resistor2.mEffectiveConductivity</name>
         <tvDouble>
-            <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">1.0E-6</value>
+            <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">2.0</value>
+            <format>Decimal</format>
+        </tvDouble>
+        <state>Valid</state>
+        <units>--</units>
+    </variable>
+    <variable>
+        <name>mySimObject.model.SimpleVoltageSource.mSourcePotential</name>
+        <tvDouble>
+            <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">1.0</value>
             <format>Decimal</format>
         </tvDouble>
         <state>Valid</state>
