@@ -1,6 +1,6 @@
 services:
-  gunns_loaded2:
+  main:
+    build: .
     volumes:
-      - .:/root/gunns-sims
-    depends_on:
-      - gunns_loaded
+      - ".:/root/gunns-sims"
+    stdin_open: true
