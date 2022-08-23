@@ -16,7 +16,7 @@
       </mxCell>
     </object>
     <mxCell id="1" parent="0" value="Network" />
-    <object About="Network" c00.convergenceTolerance="0.001" c01.minLinearizationPotential="0.001" c02.minorStepLimit="10.0000" c03.decompositionLimit="1" id="5UMHE88EWMGOHEUAE1WY-2" label="BasicThermal">
+    <object About="Network" c00.convergenceTolerance="0.001" c01.minLinearizationPotential="0.001" c02.minorStepLimit="10.0000" c03.decompositionLimit="1" id="5UMHE88EWMGOHEUAE1WY-2" label="Network">
       <gunns subtype="Sub" type="Network" />
       <mxCell parent="1" style="swimlane;startSize=20;" vertex="1">
         <mxGeometry as="geometry" height="230" width="990" x="20" y="60">

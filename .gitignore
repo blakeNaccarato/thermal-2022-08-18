@@ -4,6 +4,7 @@
 *.cpp
 *.hh
 *.xml.bak
+_init_log.csv
 
 #! From gunns/sims/.gitignore
 

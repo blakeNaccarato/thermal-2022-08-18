@@ -1,4 +1,2 @@
-#define RATE 0.1
-
 #include "sim_objects/default_trick_sys.sm"
-#include "/root/thermal-2022-08-18/S_modules/MySim.sm"
+#include "Sim.sm"
