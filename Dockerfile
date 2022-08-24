@@ -4,4 +4,4 @@ RUN yum remove -y git \
     && yum install -y git236
 RUN rm -r /root
 COPY root /root
-RUN git clone https://github.com/blakeNaccarato/gunns-sims.git /root/gunns-sims/
+COPY . /root/gunns-sims
