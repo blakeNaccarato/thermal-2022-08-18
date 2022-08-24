@@ -1,6 +1,6 @@
 services:
   main:
-    build: docker
+    build: .
     volumes:
       - "gunns-sims:/home/gunns-sims"
     stdin_open: true
