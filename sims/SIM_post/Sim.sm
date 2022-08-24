@@ -1,0 +1,25 @@
+##include "/root/gunns-sims/SIM_post/network/Network.hh"
+
+#define RATE 0.1
+
+class Sim: public Trick::SimObject
+{
+    public:
+        Network network;
+
+        Sim()
+            :
+            network("Sim.network")
+        {
+            ("initialization") network.initialize("Sim.network");
+            ("restart") network.restart();
+            (RATE, "scheduled") network.update(RATE);
+        }
+        virtual ~Sim() {}
+
+    private:
+        Sim(const Sim&);
+        Sim operator = (const Sim&);
+};
+
+Sim sim;
