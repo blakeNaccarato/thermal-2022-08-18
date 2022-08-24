@@ -1,54 +1,54 @@
 {
-	"folders": [
-		{
-			"path": "sims/SIM_example"
-		},
-		{
-			"path": "/root"
-		},
-		{
-			"path": "/home"
-		},
-		{
-			"path": "."
-		},
-	],
-	"settings": {
-		"git.ignoredRepositories": [
-			"gunns",
-			"trick"
-		],
-		"[plaintext]": {"editor.wordWrap": "off"},
-		"files.associations": {
-			"*.sm": "cpp",
-		  },
-	},
-	"tasks": {
-		"version": "2.0.0",
-		"tasks": [
-			{
-				"label": "netexport -p <example_network>",
-				"type": "shell",
-				"command": "python /home/gunns/draw/netexport.py /root/gunns-sims/sims/SIM_example/network/Network.xml",
-				"problemMatcher": []
-			},
-			{
-				"label": "netexport",
-				"type": "shell",
-				"command": "python /home/gunns/draw/netexport.py ${input:input}",
-				"problemMatcher": []
-			}
-		],
-		"inputs": [
-			{
-				"id": "input",
-				"type": "pickString",
-				"description": "Drawing to export",
-				"options": [
-					"", // Triggers the GUI
-					"/root/gunns-sims/SIM_thermal/network/Network.xml"
-				]
-			}
-		],
-	}
+  "folders": [
+    {
+      "path": "sims/SIM_post"
+    },
+    {
+      "path": "sims/SIM_example"
+    },
+    {
+      "path": "/root"
+    },
+    {
+      "path": "/home"
+    },
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "git.ignoredRepositories": ["gunns", "trick"],
+    "[plaintext]": { "editor.wordWrap": "off" },
+    "files.associations": {
+      "*.sm": "cpp"
+    }
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "netexport -p <example_network>",
+        "type": "shell",
+        "command": "python /home/gunns/draw/netexport.py /root/gunns-sims/sims/SIM_example/network/Network.xml",
+        "problemMatcher": []
+      },
+      {
+        "label": "netexport",
+        "type": "shell",
+        "command": "python /home/gunns/draw/netexport.py ${input:input}",
+        "problemMatcher": []
+      }
+    ],
+    "inputs": [
+      {
+        "id": "input",
+        "type": "pickString",
+        "description": "Drawing to export",
+        "options": [
+          "", // Triggers the GUI
+          "/root/gunns-sims/SIM_thermal/network/Network.xml"
+        ]
+      }
+    ]
+  }
 }
