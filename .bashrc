@@ -1,5 +1,7 @@
+#!/bin/bash
 
-#! Modifications
+#! ---------------------------------------------------------------------------------- #!
+#! MODIFICATIONS
 
 export DISPLAY=host.docker.internal:0.0
 export GUNNS_EXT_PATH=""
@@ -7,7 +9,9 @@ export GUNNS_HOME="/home/gunns"
 #* Trim the display of parent directories in the prompt
 PROMPT_DIRTRIM=2
 
-#! Standard ~/.bashrc from latest Ubuntu
+#! ---------------------------------------------------------------------------------- #!
+#! LATEST UBUNTU BASHRC
+
 
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
@@ -128,7 +132,8 @@ if ! shopt -oq posix; then
 fi
 
 
-#! NASA GUNNS ~/.bashrc, needs cshrc next to it (no dot)
+#! ---------------------------------------------------------------------------------- #!
+#! NASA GUNNS
 
 # Copyright 2019 United States Government as represented by the Administrator of the
 # National Aeronautics and Space Administration.  All Rights Reserved.
@@ -182,10 +187,12 @@ function isNotInExcludeList {
        fi
     done
 }
-# Get the full environment from a tcsh shell that sourced the /home/gunns/bin/cshrc, then
+
+#! Modified
+# Get the full environment from a tcsh shell that sourced the cshrc, then
 # add quotes to the env lines so that var=bleh blah becomes var="bleh blah"
 # and replace every line ending with a ? as a delimeter
-fullTcshEnv=`tcsh -f  -c "source /home/gunns/bin/cshrc $@; env | sed 's/=/=\"/' | sed 's/$/\"?/'"`;
+fullTcshEnv=`tcsh -f  -c "source /root/cshrc $@; env | sed 's/=/=\"/' | sed 's/$/\"?/'"`;
 
 # Collapse newlines to make all variables on one line
 #echo "$fullTcshEnv"
