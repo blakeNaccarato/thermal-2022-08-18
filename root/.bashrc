@@ -1,17 +1,36 @@
 #!/bin/bash
 
-#! ---------------------------------------------------------------------------------- #!
-#! MODIFICATIONS
+#! ---------------------------------------------------------------------------------- !#
+#! TRICK/GUNNS
+
+export GUNNS_EXT_PATH="/home/gunns-sims"
+export GUNNS_HOME="/home/gunns"
+
+#! ---------------------------------------------------------------------------------- !#
+#! DOCKER
 
 export DISPLAY=host.docker.internal:0.0
-export GUNNS_EXT_PATH=""
-export GUNNS_HOME="/home/gunns"
+
+#! ---------------------------------------------------------------------------------- !#
+#! ENVIRONMENT
+
 #* Trim the display of parent directories in the prompt
 PROMPT_DIRTRIM=2
 
-#! ---------------------------------------------------------------------------------- #!
-#! LATEST UBUNTU BASHRC
+#* Import dotenv aka .env environment variables if it is found
+if [ -f ./.env ] ; then
+    set -o allexport # enable shell option to export all created variables
+    source ./.env # now this will export all vars instead of just one
+    set +o allexport # disable shell option to export all created variables
+fi
 
+#* Activate virtual environment if a .venv folder is detected
+if [ -d .venv ] ; then
+    source .venv/bin/activate
+fi
+
+#! ---------------------------------------------------------------------------------- !#
+#! UBUNTU BASHRC
 
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
@@ -131,9 +150,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
-
-#! ---------------------------------------------------------------------------------- #!
-#! NASA GUNNS
+#! ---------------------------------------------------------------------------------- !#
+#! NASA GUNNS BASHRC
 
 # Copyright 2019 United States Government as represented by the Administrator of the
 # National Aeronautics and Space Administration.  All Rights Reserved.
