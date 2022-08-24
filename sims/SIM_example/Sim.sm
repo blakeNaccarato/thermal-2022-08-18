@@ -1,4 +1,4 @@
-##include "/root/gunns-sims/SIM_example/network/Network.hh"
+##include "/root/gunns-sims/sims/SIM_example/network/Network.hh"
 
 #define RATE 0.1
 
