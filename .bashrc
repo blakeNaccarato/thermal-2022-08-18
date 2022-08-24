@@ -182,10 +182,10 @@ function isNotInExcludeList {
        fi
     done
 }
-# Get the full environment from a tcsh shell that sourced the bin/cshrc, then
+# Get the full environment from a tcsh shell that sourced the /home/gunns/bin/cshrc, then
 # add quotes to the env lines so that var=bleh blah becomes var="bleh blah"
 # and replace every line ending with a ? as a delimeter
-fullTcshEnv=`tcsh -f  -c "source bin/cshrc $@; env | sed 's/=/=\"/' | sed 's/$/\"?/'"`;
+fullTcshEnv=`tcsh -f  -c "source /home/gunns/bin/cshrc $@; env | sed 's/=/=\"/' | sed 's/$/\"?/'"`;
 
 # Collapse newlines to make all variables on one line
 #echo "$fullTcshEnv"
