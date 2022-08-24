@@ -2,7 +2,7 @@ services:
   main:
     build: .
     volumes:
-      - "gunns-sims:/home/gunns-sims"
+      - "gunns-sims:/root"
     stdin_open: true
 
 volumes:
