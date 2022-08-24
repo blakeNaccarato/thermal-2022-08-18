@@ -1,6 +1,6 @@
-STOP = 10
+STOP = 0.0
 RATE = 0.1
-DEBUG = True
+DEBUG = False
 
 trick.sim_services.exec_set_terminate_time(STOP)
 
