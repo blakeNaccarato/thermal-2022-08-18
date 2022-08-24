@@ -1,9 +1,0 @@
-services:
-  main:
-    build: .
-    volumes:
-      - "volume:/root/gunns-sims"
-    stdin_open: true
-
-volumes:
-  volume:
