@@ -1,10 +1,10 @@
 services:
   main:
-    build: .
+    build: docker
     volumes:
-      - "volume:/root/gunns-sims"
+      - "gunns-sims:/home/gunns-sims"
     stdin_open: true
 
 volumes:
-  volume:
+  gunns-sims:
     external: true
