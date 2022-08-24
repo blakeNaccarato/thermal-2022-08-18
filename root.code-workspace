@@ -1,13 +1,16 @@
 {
 	"folders": [
 		{
-			"path": "."
+			"path": "sims/SIM_example"
 		},
 		{
 			"path": "/root"
 		},
 		{
 			"path": "/home"
+		},
+		{
+			"path": "."
 		},
 	],
 	"settings": {
@@ -24,9 +27,9 @@
 		"version": "2.0.0",
 		"tasks": [
 			{
-				"label": "netexport <default_network>",
+				"label": "netexport -p <example_network>",
 				"type": "shell",
-				"command": "python /home/gunns/draw/netexport.py /root/gunns-sims/SIM_thermal/network/Network.xml",
+				"command": "python /home/gunns/draw/netexport.py /root/gunns-sims/sims/SIM_example/network/Network.xml",
 				"problemMatcher": []
 			},
 			{
