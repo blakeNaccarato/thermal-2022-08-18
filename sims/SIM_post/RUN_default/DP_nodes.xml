@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE product PUBLIC "-//Tricklab//DTD Product V1.0//EN" "Product.dtd">
+<product version="1.0">
+    <tstart>-1.0E20</tstart>
+    <tstop>1.0E20</tstop>
+    <frequency>0.0</frequency>
+    <table>
+        <title>Table</title>
+        <column>
+            <var units="--">sim.network.netNodes[0].mFluxThrough</var>
+        </column>
+        <column>
+            <var units="--">sim.network.netNodes[0].mPotential</var>
+        </column>
+        <column>
+            <var units="--">sim.network.netNodes[1].mFluxThrough</var>
+        </column>
+        <column>
+            <var units="--">sim.network.netNodes[1].mPotential</var>
+        </column>
+        <column>
+            <var units="--">sim.network.netNodes[2].mFluxThrough</var>
+        </column>
+        <column>
+            <var units="--">sim.network.netNodes[2].mPotential</var>
+        </column>
+        <column>
+            <var units="--">sim.network.netNodes[3].mFluxThrough</var>
+        </column>
+        <column>
+            <var units="--">sim.network.netNodes[3].mPotential</var>
+        </column>
+        <column>
+            <var units="--">sim.network.netNodes[4].mFluxThrough</var>
+        </column>
+        <column>
+            <var units="--">sim.network.netNodes[4].mPotential</var>
+        </column>
+        <column>
+            <var units="--">sim.network.netNodes[5].mFluxThrough</var>
+        </column>
+        <column>
+            <var units="--">sim.network.netNodes[5].mPotential</var>
+        </column>
+    </table>
+</product>
