@@ -1,0 +1,28 @@
+global DR_GROUP_ID
+global drg
+try:
+    if DR_GROUP_ID >= 0:
+        DR_GROUP_ID += 1
+except NameError:
+    DR_GROUP_ID = 0
+    drg = []
+
+drg.append(trick.DRBinary("dr"))
+drg[DR_GROUP_ID].set_freq(trick.DR_Always)
+drg[DR_GROUP_ID].set_cycle(0.1)
+drg[DR_GROUP_ID].set_single_prec_only(False)
+drg[DR_GROUP_ID].add_variable("sim.network.netNodes[0].mPotential")
+drg[DR_GROUP_ID].add_variable("sim.network.netNodes[1].mPotential")
+drg[DR_GROUP_ID].add_variable("sim.network.netNodes[2].mPotential")
+drg[DR_GROUP_ID].add_variable("sim.network.netNodes[3].mPotential")
+drg[DR_GROUP_ID].add_variable("sim.network.netNodes[4].mPotential")
+drg[DR_GROUP_ID].add_variable("sim.network.netNodes[5].mPotential")
+drg[DR_GROUP_ID].add_variable("sim.network.netNodes[0].mFluxThrough")
+drg[DR_GROUP_ID].add_variable("sim.network.netNodes[1].mFluxThrough")
+drg[DR_GROUP_ID].add_variable("sim.network.netNodes[2].mFluxThrough")
+drg[DR_GROUP_ID].add_variable("sim.network.netNodes[3].mFluxThrough")
+drg[DR_GROUP_ID].add_variable("sim.network.netNodes[4].mFluxThrough")
+drg[DR_GROUP_ID].add_variable("sim.network.netNodes[5].mFluxThrough")
+drg[DR_GROUP_ID].set_max_file_size(1 * 1073741824) # multiply converts GiB to B --Dr. Dre
+trick.add_data_record_group(drg[DR_GROUP_ID], trick.DR_Buffer)
+drg[DR_GROUP_ID].enable()
