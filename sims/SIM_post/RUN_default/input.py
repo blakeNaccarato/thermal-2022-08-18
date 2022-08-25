@@ -1,4 +1,4 @@
-STOP = 0.0
+STOP = 100.0
 RATE = 0.1
 DEBUG = False
 
