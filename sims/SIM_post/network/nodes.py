@@ -1,14 +1,17 @@
 from __future__ import annotations
+from collections import UserDict
 
-from typing import Any, Mapping, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Mapping, Protocol
 
 if TYPE_CHECKING:
     from _typeshed import SupportsRichComparisonT
 
+import dataclasses
 from math import pi
 from pathlib import Path
 
 from pint import UnitRegistry
+from typing_extensions import dataclass_transform
 
 U = UnitRegistry(auto_reduce_dimensions=True, system="SI")
 U.load_definitions(Path("units.txt"))
@@ -27,12 +30,15 @@ def main():
 
     nodes = quantify(
         units="in",
-        mapping=dict(
-            T5=0.950,
-            T4=2.675,
-            T3=3.150,
-            T2=3.625,
-            T1=4.100,
+        mapping=ContextualDataDict(
+            dict(
+                T5=(0.950, 0),
+                T4=(2.675, 0),
+                T3=(3.150, 0),
+                T2=(3.625, 0),
+                T1=(4.100, 0),
+            ),
+            Node,
         ),
     )
 
@@ -67,7 +73,103 @@ def main():
     ...
 
 
-def short_repr(self):
+# * -------------------------------------------------------------------------------- * #
+# * DATADICT
+# In-lining this implementation for now.
+# See: https://github.com/gahjelle/datadict/issues/1
+
+
+class SupportsDataclass(Protocol):
+    __dataclass_fields__: dict[str, Any]
+
+
+# TODO: Implement SupportsGetAttr or use appropriate ABC, make sure the type annotation
+# below, UserDict[str, SupportsDataclass], also checks that __getitem__ is implemented.
+
+
+@dataclass_transform()
+def datadict(cls=None, **kwargs) -> SupportsDataclass | Any:
+    """Add item access to attributes"""
+
+    def wrap(cls):
+        """Wrapper that adds methods and attributes to class"""
+
+        # Create regular dataclass
+        cls = dataclasses.dataclass(**kwargs)(cls)
+
+        # Add item access
+        dataclasses._set_new_attribute(cls, "__getitem__", _getitem)  # type: ignore
+        dataclasses._set_new_attribute(cls, "__setitem__", _setitem)  # type: ignore
+        dataclasses._set_new_attribute(cls, "__delitem__", _delitem)  # type: ignore
+        dataclasses._set_new_attribute(cls, "asdict", _asdict)  # type: ignore
+
+        return cls
+
+    return wrap if cls is None else wrap(cls)
+
+
+def _getitem(self, key):
+    """Get an attribute from a dataclass using item access"""
+    try:
+        return getattr(self, key)
+    except AttributeError:
+        raise KeyError(key) from None
+
+
+def _setitem(self, key, value):
+    """Set an attribute on a dataclass using item access"""
+    setattr(self, key, value)
+
+
+def _delitem(self, key):
+    """Delete an attribute on a dataclass using item access"""
+    delattr(self, key)
+
+
+def _asdict(self):
+    """Convert the dataclass to a dictionary"""
+    return dataclasses.asdict(self)
+
+
+# * -------------------------------------------------------------------------------- * #
+# * CONTEXTUAL DATA DICT
+
+
+# TODO: Implement SupportsGetAttr or use appropriate ABC, make sure the type annotation
+# below, UserDict[str, SupportsDataclass], also checks that __getitem__ is implemented.
+
+
+class ContextualDataDict(UserDict[str, SupportsDataclass]):
+    """Contextual attribute access on dataclass instances in dictionary values.
+
+    Inside a context manager, allows getting and setting certain fields on key access
+    without explicitly calling those fields. Outside of a context manager, just get and
+    set the dataclass instances themselves upon key access. Dict values must be
+    instances of a given dataclass.
+    """
+
+    def __init__(
+        self,
+        dict: dict[Any, Any],  # noqa: A002s
+        dataclass_context: SupportsDataclass,
+        **kwargs,
+    ):
+        super().__init__(dict, **kwargs)
+        self.dataclass_context = dataclass_context
+
+
+@datadict
+class Node:
+    pos: tuple[float, float]
+
+
+test = ContextualDataDict(dict(hello=Node((0, 0))), Node)
+
+# * -------------------------------------------------------------------------------- * #
+# * QUANTITIES
+
+
+def short_repr(self: Q):
     """Short representation of a quantity."""
     base = self.to_base_units()
     return f"{base.magnitude:#.3g} {base.units:~}"
@@ -84,6 +186,8 @@ def sort_by_values(
     """Sort a mapping on its values."""
     return dict(sorted(mapping.items(), key=lambda item: item[1]))
 
+
+# * -------------------------------------------------------------------------------- * #
 
 if __name__ == "__main__":
     main()

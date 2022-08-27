@@ -1,5 +1,9 @@
 # List project dependencies here. A workflow ports them to `pyproject.toml`. This is needed because Dependabot does not currently support `flit`-flavored `pyproject.toml`.
 
+# Actually used
+typing_extensions~=4.3.0
+
+# Not used yet. Will trim down before release.
 matplotlib~=3.5.3
 pandas-stubs~=1.4.3.220822
 pandas~=1.4.3
