@@ -1,17 +1,16 @@
 from __future__ import annotations
+
 from collections import UserDict
-
-from typing import TYPE_CHECKING, Any, Mapping, Protocol, TypeVar
-
-if TYPE_CHECKING:
-    from _typeshed import SupportsRichComparisonT, SupportsItemAccess
-
 import dataclasses
 from math import pi
 from pathlib import Path
+from typing import TYPE_CHECKING, Any, Mapping, Protocol, TypeAlias, runtime_checkable
 
 from pint import UnitRegistry
 from typing_extensions import dataclass_transform
+
+if TYPE_CHECKING:
+    from _typeshed import SupportsRichComparisonT
 
 U = UnitRegistry(auto_reduce_dimensions=True, system="SI")
 U.load_definitions(Path("units.txt"))
@@ -30,15 +29,14 @@ def main():
 
     nodes = quantify(
         units="in",
-        mapping=ContextualDataclass(
+        mapping=ContextDict(
             dict(
-                T5=(0.950, 0),
-                T4=(2.675, 0),
-                T3=(3.150, 0),
-                T2=(3.625, 0),
-                T1=(4.100, 0),
+                T5=Node(pos=(0.950, 0)),
+                T4=Node(pos=(2.675, 0)),
+                T3=Node(pos=(3.150, 0)),
+                T2=Node(pos=(3.625, 0)),
+                T1=Node(pos=(4.100, 0)),
             ),
-            Node,
         ),
     )
 
@@ -77,23 +75,6 @@ def main():
 # * DATADICT
 # In-lining this implementation for now.
 # See: https://github.com/gahjelle/datadict/issues/1
-
-
-class SupportsDataclass(Protocol):
-    __dataclass_fields__: dict[str, Any]
-
-
-_VT = TypeVar("_VT")
-
-
-class SupportsDataclassAndItemAccess(
-    SupportsItemAccess[str, _VT], SupportsDataclass, Protocol[_VT]
-):
-    ...
-
-
-# TODO: Implement SupportsGetAttr or use appropriate ABC, make sure the type annotation
-# below, UserDict[str, SupportsDataclass], also checks that __getitem__ is implemented.
 
 
 @dataclass_transform()
@@ -144,11 +125,32 @@ def _asdict(self):
 # * CONTEXTUAL DATA DICT
 
 
-# TODO: Implement SupportsGetAttr or use appropriate ABC, make sure the type annotation
-# below, UserDict[str, SupportsDataclass], also checks that __getitem__ is implemented.
+class SupportsDataclass(Protocol):
+    __dataclass_fields__: dict[str, Any]
 
 
-class ContextualDataclass(UserDict[str, SupportsDataclassAndItemAccess[Any]]):
+# We could implement a protocol decorated with @runtime_checkable to check this
+# properly. However, type checkers will always complain outside of runtime, since the
+# methods that datadict adds (a special kind of dataclass) are dynamically added only at
+# runtime. Instead, a simple type alias (which only checks for dataclass support but
+# indicates that datadicts should be used) will suffice.
+MustBeDataDict: TypeAlias = SupportsDataclass
+"""User must supply a dataclass that supports dict-like item access. Can only be
+enforced at runtime due to dynamic nature of dataclasses."""
+
+
+@runtime_checkable
+class SupportsDataDict(SupportsDataclass, Protocol):
+    """Support for a dataclass with dict-like item access."""
+
+    def __getitem__(self, __k, __v):
+        ...
+
+    def __setitem__(self, __k, __v):
+        ...
+
+
+class ContextDict(UserDict[str, Any]):
     """Contextual attribute access on dataclass instances in dictionary values.
 
     Inside a context manager, allows getting and setting certain fields on key access
@@ -159,20 +161,42 @@ class ContextualDataclass(UserDict[str, SupportsDataclassAndItemAccess[Any]]):
 
     def __init__(
         self,
-        dict: dict[str, Any],  # noqa: A002s
-        dataclass_context: SupportsDataclass,
+        dict: dict[str, MustBeDataDict] | None = None,  # noqa: A002
         **kwargs,
     ):
         super().__init__(dict, **kwargs)
-        self.dataclass_context = dataclass_context
+        self.value_type = type(next(iter(self.values())))
+        self.validate()
+
+    def validate(self):
+        """Validate dict values.
+
+        Check whether all values are instances of the same dataclass, and whether
+        that dataclass supports dict-like item access."""
+
+        for value in self.values():
+            exc_details = f"\n\tOffending value:\n\t{value}"
+            if not isinstance(value, SupportsDataDict):
+                raise TypeError(
+                    f"Values must be dataclasses that support dict-like item access.{exc_details}"
+                )
+            if not isinstance(value, self.value_type):
+                raise ValueError(
+                    f"Values must be instances of the same dataclass.{exc_details}"
+                )
 
 
-@datadict
+@dataclasses.dataclass
 class Node:
-    pos: tuple[float, float]
+    label: str = ""
+    pos: tuple[float, float] = (0, 0)
 
 
-test = ContextualDataclass(dict(hello=Node((0, 0))), Node)
+context_dict = ContextDict(
+    hello=Node("well", (0, 0)),
+    world=Node("quell", (1, 1)),
+)
+...
 
 # * -------------------------------------------------------------------------------- * #
 # * QUANTITIES
