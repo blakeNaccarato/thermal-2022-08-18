@@ -1,10 +1,10 @@
 from __future__ import annotations
 from collections import UserDict
 
-from typing import TYPE_CHECKING, Any, Mapping, Protocol
+from typing import TYPE_CHECKING, Any, Mapping, Protocol, TypeVar
 
 if TYPE_CHECKING:
-    from _typeshed import SupportsRichComparisonT
+    from _typeshed import SupportsRichComparisonT, SupportsItemAccess
 
 import dataclasses
 from math import pi
@@ -30,7 +30,7 @@ def main():
 
     nodes = quantify(
         units="in",
-        mapping=ContextualDataDict(
+        mapping=ContextualDataclass(
             dict(
                 T5=(0.950, 0),
                 T4=(2.675, 0),
@@ -83,12 +83,21 @@ class SupportsDataclass(Protocol):
     __dataclass_fields__: dict[str, Any]
 
 
+_VT = TypeVar("_VT")
+
+
+class SupportsDataclassAndItemAccess(
+    SupportsItemAccess[str, _VT], SupportsDataclass, Protocol[_VT]
+):
+    ...
+
+
 # TODO: Implement SupportsGetAttr or use appropriate ABC, make sure the type annotation
 # below, UserDict[str, SupportsDataclass], also checks that __getitem__ is implemented.
 
 
 @dataclass_transform()
-def datadict(cls=None, **kwargs) -> SupportsDataclass | Any:
+def datadict(cls=None, **kwargs):
     """Add item access to attributes"""
 
     def wrap(cls):
@@ -139,7 +148,7 @@ def _asdict(self):
 # below, UserDict[str, SupportsDataclass], also checks that __getitem__ is implemented.
 
 
-class ContextualDataDict(UserDict[str, SupportsDataclass]):
+class ContextualDataclass(UserDict[str, SupportsDataclassAndItemAccess[Any]]):
     """Contextual attribute access on dataclass instances in dictionary values.
 
     Inside a context manager, allows getting and setting certain fields on key access
@@ -150,7 +159,7 @@ class ContextualDataDict(UserDict[str, SupportsDataclass]):
 
     def __init__(
         self,
-        dict: dict[Any, Any],  # noqa: A002s
+        dict: dict[str, Any],  # noqa: A002s
         dataclass_context: SupportsDataclass,
         **kwargs,
     ):
@@ -163,7 +172,7 @@ class Node:
     pos: tuple[float, float]
 
 
-test = ContextualDataDict(dict(hello=Node((0, 0))), Node)
+test = ContextualDataclass(dict(hello=Node((0, 0))), Node)
 
 # * -------------------------------------------------------------------------------- * #
 # * QUANTITIES
