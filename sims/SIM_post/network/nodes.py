@@ -31,8 +31,11 @@ def main():
     flux = Q(60, "W/cm**2")
     rate = flux * cross_sectional_area
 
-    nodes = dict(T5=0.950, T4=2.675, T3=3.150, T2=3.625, T1=4.100)
-    nodes = ContextDict({key: Node(Q(value, "in")) for key, value in nodes.items()})
+    init_nodes = dict(T5=0.950, T4=2.675, T3=3.150, T2=3.625, T1=4.100)
+    nodes = ContextDict(
+        {key: Node(Q(value, "in")) for key, value in init_nodes.items()}
+    )
+    nodes2 = {key: Node(Q(value, "in")) for key, value in init_nodes.items()}
 
     # links = sort_by_values(
     #     quantify(
@@ -55,8 +58,8 @@ def main():
             nodes["T5"] + (collar_height / 2) + (floor_thickness / 2)
         )
 
-    nodes = sort_by_values(nodes)
-
+    nodes = ContextDict(sorted(nodes.items(), key=lambda item: item[1].pos))
+    ...
     # TODO: Define node and link dataclasses:
     # - Unpack the data above into them
     # - Supply on- and off-axis surface area at each node, node mass/volume

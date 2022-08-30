@@ -4,6 +4,7 @@ import dataclasses
 from typing import Any, Protocol, TypeAlias, runtime_checkable
 
 
+@runtime_checkable
 class SupportsDataclass(Protocol):
     __dataclass_fields__: dict[str, Any]
 
@@ -47,7 +48,7 @@ class ContextDict(UserDict[str, Any]):
 
     def __init__(
         self,
-        dict: dict[str, SupportsDataDict] | None = None,  # noqa: A002
+        dict: dict[str, SupportsDataDict] | Any = None,  # noqa: A002
         **kwargs,
     ):
         self._context: str | None = None
@@ -65,11 +66,16 @@ class ContextDict(UserDict[str, Any]):
     def __setitem__(self, key: str, item: Any):
         if self._context:
             value = super().__getitem__(key)
-            value[key] = item
+            value[self._context] = item
         else:
             if self._initialized:
                 self._validate_value(item)
             super().__setitem__(key, item)
+
+    def __missing__(self, key: str) -> Any:
+        """Return a new instance of the dataclass when a key is missing."""
+        super().__setitem__(key, self.value_type())
+        return super().__getitem__(key)
 
     @contextmanager
     def context(self, context: str):
@@ -95,6 +101,8 @@ class ContextDict(UserDict[str, Any]):
         Check whether a value is an instance of the expected dataclass, and whether that
         dataclass supports dict-like item access."""
 
+        if not isinstance(value, SupportsDataclass):
+            raise ValueError("Values must be dataclasses." f"\n\tGot: {type(value)}")
         if not isinstance(value, self.value_type):
             raise ValueError(
                 "Values must be instances of the same dataclass."
