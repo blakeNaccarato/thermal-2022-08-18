@@ -4,3 +4,4 @@ Long description of your project.
 """
 
 __version__ = "0.0.0"
+from gunns_sims.api import *  # type: ignore

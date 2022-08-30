@@ -1,4 +1,4 @@
-# gunns-sims
+# gunns_sims
 
 Long description of your project.
 

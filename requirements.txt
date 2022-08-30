@@ -1,7 +1,7 @@
 # List project dependencies here. A workflow ports them to `pyproject.toml`. This is needed because Dependabot does not currently support `flit`-flavored `pyproject.toml`.
 
 # Actually used
-typing_extensions~=4.3.0
+datadict~=1.0.0
 
 # Not used yet. Will trim down before release.
 matplotlib~=3.5.3

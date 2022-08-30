@@ -1,6 +1,6 @@
 [run]
 branch = True
-source = gunns-sims
+source = gunns_sims
 
 [report]
 

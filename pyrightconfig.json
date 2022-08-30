@@ -1,7 +1,7 @@
 {
   "ignore": [".tools"],
   "include": ["src"],
-  "extraPaths": ["tests", "examples"],
+  "extraPaths": ["tests"],
   "typeCheckingMode": "strict",
   "reportMissingParameterType": "none",
   "reportMissingTypeStubs": "none",
@@ -11,6 +11,6 @@
   "reportUnknownParameterType": "none",
   "reportUnknownVariableType": "none",
   "reportUntypedBaseClass": "none",
-  "useLibraryCodeForTypes": false,
+  "useLibraryCodeForTypes": true,
   "reportUnnecessaryTypeIgnoreComment": true
 }
