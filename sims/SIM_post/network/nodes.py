@@ -1,16 +1,26 @@
 from __future__ import annotations
 
 from collections import UserDict
+from contextlib import contextmanager
 import dataclasses
 from math import pi
 from pathlib import Path
-from typing import TYPE_CHECKING, Any, Mapping, Protocol, TypeAlias, runtime_checkable
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Generic,
+    Mapping,
+    Protocol,
+    TypeAlias,
+    TypeVar,
+    runtime_checkable,
+)
 
 from pint import UnitRegistry
 from typing_extensions import dataclass_transform
 
 if TYPE_CHECKING:
-    from _typeshed import SupportsRichComparisonT
+    from _typeshed import SupportsItems, SupportsItemAccess, SupportsRichComparisonT
 
 U = UnitRegistry(auto_reduce_dimensions=True, system="SI")
 U.load_definitions(Path("units.txt"))
@@ -134,14 +144,18 @@ class SupportsDataclass(Protocol):
 # methods that datadict adds (a special kind of dataclass) are dynamically added only at
 # runtime. Instead, a simple type alias (which only checks for dataclass support but
 # indicates that datadicts should be used) will suffice.
-MustBeDataDict: TypeAlias = SupportsDataclass
-"""User must supply a dataclass that supports dict-like item access. Can only be
-enforced at runtime due to dynamic nature of dataclasses."""
+SupportsDataDict: TypeAlias = SupportsDataclass
+"""Denotes a dataclass that should support dict-like item access.
+
+Not enforced here, but by a separate protocol marked `@runtime_checkable` due to the
+dynamic nature of dataclasses."""
 
 
 @runtime_checkable
-class SupportsDataDict(SupportsDataclass, Protocol):
-    """Support for a dataclass with dict-like item access."""
+class SupportsDataDictAtRuntime(SupportsDataclass, Protocol):
+    """Denotes a dataclass with dict-like item access.
+
+    Enforced at runtime due to the dynamic nature of dataclasses."""
 
     def __getitem__(self, __k, __v):
         ...
@@ -153,36 +167,75 @@ class SupportsDataDict(SupportsDataclass, Protocol):
 class ContextDict(UserDict[str, Any]):
     """Contextual attribute access on dataclass instances in dictionary values.
 
-    Inside a context manager, allows getting and setting certain fields on key access
-    without explicitly calling those fields. Outside of a context manager, just get and
-    set the dataclass instances themselves upon key access. Dict values must be
-    instances of a given dataclass.
+    Functions like a normal dictionary outside of the provided context manager. Dict
+    values should be instances of a single dataclass that supports dict-like item
+    access, such as a `datadict`.
+
+    When using the context manager `ContextDict.context`, allows directly getting and
+    setting the given field of the dataclasses in the values on key access without
+    repeatedly calling that field. Nested contexts are supported.
     """
 
     def __init__(
         self,
-        dict: dict[str, MustBeDataDict] | None = None,  # noqa: A002
+        dict: dict[str, SupportsDataDict] | None = None,  # noqa: A002
         **kwargs,
     ):
+        self._context: str | None = None
+        self._initialized = False
         super().__init__(dict, **kwargs)
         self.value_type = type(next(iter(self.values())))
-        self.validate()
-
-    def validate(self):
-        """Validate dict values.
-
-        Check whether all values are instances of the same dataclass, and whether
-        that dataclass supports dict-like item access."""
-
         for value in self.values():
-            exc_details = f"\n\tOffending value:\n\t{value}"
-            if not isinstance(value, SupportsDataDict):
-                raise TypeError(
-                    f"Values must be dataclasses that support dict-like item access.{exc_details}"
+            self._validate_value(value)
+        self._initialized = True
+
+    def __getitem__(self, key: str) -> Any:
+        value = super().__getitem__(key)
+        return value[self._context] if self._context else value
+
+    def __setitem__(self, key: str, item: Any):
+        if self._context:
+            value = super().__getitem__(key)
+            value[key] = item
+        else:
+            if self._initialized:
+                self._validate_value(item)
+            super().__setitem__(key, item)
+
+    @contextmanager
+    def context(self, context: str):
+        """Enter a context where certain fields can be accessed."""
+        self._validate_context(context)
+        previous_context = self._context
+        try:
+            self._context = context
+            yield
+        finally:
+            self._context = previous_context
+
+    def _validate_context(self, context):
+        """Ensure that the field provided is one of the fields of the dataclass."""
+        if context not in (field.name for field in dataclasses.fields(self.value_type)):
+            raise ValueError(
+                f"Provided context '{context}' is not a field of {self.value_type}"
                 )
+
+    def _validate_value(self, value):
+        """Validate a dict value.
+
+        Check whether a value is an instance of the expected dataclass, and whether that
+        dataclass supports dict-like item access."""
+
             if not isinstance(value, self.value_type):
                 raise ValueError(
-                    f"Values must be instances of the same dataclass.{exc_details}"
+                "Values must be instances of the same dataclass."
+                f"\n\tExpected: {self.value_type}"
+                f"\n\tGot: {type(value)}"
+            )
+        if not isinstance(value, SupportsDataDictAtRuntime):
+            raise TypeError(
+                "Values must be dataclasses that support dict-like item access."
+                f"\n\tClass {type(value)} does not appear to support dict-like item access."
                 )
 
 
