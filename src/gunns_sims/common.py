@@ -9,6 +9,8 @@ U = UnitRegistry(auto_reduce_dimensions=True, system="SI")
 U.load_definitions(Path("units.txt"))
 Q = U.Quantity
 
+orig_repr = Q.__repr__
+
 
 def short_repr(self: Q):
     """Short representation of a quantity."""

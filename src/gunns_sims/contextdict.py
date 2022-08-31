@@ -88,7 +88,7 @@ class ContextDict(UserDict[str, Any]):
         finally:
             self._context = previous_context
 
-    def _validate_context(self, context):
+    def _validate_context(self, context: str):
         """Ensure that the field provided is one of the fields of the dataclass."""
         if context not in (field.name for field in dataclasses.fields(self.value_type)):
             raise ValueError(

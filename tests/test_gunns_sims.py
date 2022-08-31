@@ -2,7 +2,7 @@
 
 import datadict
 
-from gunns_sims import ContextDict
+from gunns_sims.contextdict import ContextDict
 
 
 @datadict.dataclass

@@ -1,7 +1,7 @@
 {
   "ignore": [".tools"],
   "include": ["src"],
-  "extraPaths": ["tests"],
+  "extraPaths": ["tests", "network_inputs"],
   "typeCheckingMode": "strict",
   "reportMissingParameterType": "none",
   "reportMissingTypeStubs": "none",
