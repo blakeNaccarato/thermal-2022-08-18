@@ -11,6 +11,7 @@
   "reportUnknownParameterType": "none",
   "reportUnknownVariableType": "none",
   "reportUntypedBaseClass": "none",
+  "reportUntypedClassDecorator": "none",
   "useLibraryCodeForTypes": true,
   "reportUnnecessaryTypeIgnoreComment": true
 }
