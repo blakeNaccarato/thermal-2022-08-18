@@ -6,7 +6,7 @@ datadict~=1.0.0
 # Not used yet. Will trim down before release.
 matplotlib~=3.5.3
 pandas-stubs~=1.4.3.220822
-pandas~=1.4.3
+pandas~=1.4.4
 pandera~=0.12.0
 pint~=0.19.2
 pyarrow~=9.0.0
