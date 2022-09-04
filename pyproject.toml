@@ -5,7 +5,7 @@ build-backend = "flit_core.buildapi"
 [project]
 name = "gunns_sims"
 requires-python = ">=3.10"
-dependencies = [ "", "datadict~=1.0.0", "",]
+dependencies = [ "datadict~=1.0.0",]
 readme = "README.md"
 dynamic = [ "version", "description",]
 [[project.authors]]
