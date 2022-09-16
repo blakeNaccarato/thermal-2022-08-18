@@ -1,0 +1,127 @@
+<mxfile compressed="false" host="Electron" modified="2022-08-25T00:28:10.974Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/20.2.3 Chrome/102.0.5005.167 Electron/19.0.11 Safari/537.36" etag="3dZiD8B6kCN1779VUnfT" version="20.2.3" type="device">
+  <diagram id="UGVgy--TyMWLyUP3kMGZ" name="Page-1">
+    <mxGraphModel dx="1422" dy="859" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="0" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" value="Network" parent="0" />
+        <object About="Network" c00.convergenceTolerance="0.001" c01.minLinearizationPotential="0.001" c02.minorStepLimit="10.0000" c03.decompositionLimit="1" label="Network" id="5UMHE88EWMGOHEUAE1WY-2">
+          <gunns subtype="Sub" type="Network" />
+          <mxCell style="swimlane;startSize=20;" parent="1" vertex="1">
+            <mxGeometry x="20" y="60" width="990" height="230" as="geometry">
+              <mxRectangle width="200" height="20" as="alternateBounds" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object About="Basic Node" i00.potential="0" label="0" id="5UMHE88EWMGOHEUAE1WY-3">
+          <gunns subtype="Basic" type="Node" />
+          <mxCell style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="5UMHE88EWMGOHEUAE1WY-2" vertex="1">
+            <mxGeometry x="300" y="80" width="20" height="20" as="geometry" />
+          </mxCell>
+        </object>
+        <object About="Basic Node" i00.potential="0" label="1" id="5UMHE88EWMGOHEUAE1WY-4">
+          <gunns subtype="Basic" type="Node" />
+          <mxCell style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="5UMHE88EWMGOHEUAE1WY-2" vertex="1">
+            <mxGeometry x="630" y="80" width="20" height="20" as="geometry" />
+          </mxCell>
+        </object>
+        <object About="Basic Conductor" Ports="0=in, 1=out" c00.defaultConductivity="100" i00.malfBlockageFlag="false" i01.malfBlockageValue="0.0" label="Resistor1" id="5UMHE88EWMGOHEUAE1WY-8">
+          <gunns numPorts="2" reqPorts="0,1" subtype="core/GunnsBasicConductor" type="Link" />
+          <mxCell style="verticalLabelPosition=bottom;shadow=0;dashed=0;align=center;fillColor=#ffffff;html=1;verticalAlign=top;strokeWidth=1;shape=mxgraph.electrical.resistors.resistor_2;fontColor=#000000;direction=east;rotation=-0.0;flipH=0;flipV=0;" parent="5UMHE88EWMGOHEUAE1WY-2" vertex="1">
+            <mxGeometry x="430" y="80" width="80" height="20" as="geometry" />
+          </mxCell>
+        </object>
+        <object About="Basic Conductor" Ports="0=in, 1=out" c00.defaultConductivity="10" i00.malfBlockageFlag="false" i01.malfBlockageValue="0.0" label="Resistor2" id="5UMHE88EWMGOHEUAE1WY-9">
+          <gunns numPorts="2" reqPorts="0,1" subtype="core/GunnsBasicConductor" type="Link" />
+          <mxCell style="verticalLabelPosition=bottom;shadow=0;dashed=0;align=center;fillColor=#ffffff;html=1;verticalAlign=top;strokeWidth=1;shape=mxgraph.electrical.resistors.resistor_2;fontColor=#000000;direction=east;rotation=-0.0;flipH=0;flipV=0;" parent="5UMHE88EWMGOHEUAE1WY-2" vertex="1">
+            <mxGeometry x="720" y="80" width="80" height="20" as="geometry" />
+          </mxCell>
+        </object>
+        <object About="Link Port" label="1" id="5UMHE88EWMGOHEUAE1WY-11">
+          <gunns type="Port" />
+          <mxCell style="endArrow=none;html=1;fontSize=9;fontColor=#99CCFF;jumpStyle=arc;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;rounded=0;" parent="5UMHE88EWMGOHEUAE1WY-2" source="OuQL4367HmKvvJFcRHPq-1" target="5UMHE88EWMGOHEUAE1WY-3" edge="1">
+            <mxGeometry x="-0.8" width="50" height="50" relative="1" as="geometry">
+              <mxPoint x="170" y="90" as="sourcePoint" />
+              <mxPoint x="-180" y="-240" as="targetPoint" />
+              <Array as="points" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object About="Link Port" label="0" id="5UMHE88EWMGOHEUAE1WY-12">
+          <gunns type="Port" />
+          <mxCell style="endArrow=none;html=1;fontSize=9;fontColor=#99CCFF;jumpStyle=arc;edgeStyle=orthogonalEdgeStyle;entryX=0.0;entryY=0.5;exitX=1;exitY=0.5;exitDx=0;exitDy=0;rounded=0;" parent="5UMHE88EWMGOHEUAE1WY-2" source="5UMHE88EWMGOHEUAE1WY-3" target="5UMHE88EWMGOHEUAE1WY-8" edge="1">
+            <mxGeometry x="0.8" width="50" height="50" relative="1" as="geometry">
+              <mxPoint x="-200" y="-240" as="sourcePoint" />
+              <mxPoint x="-180" y="-240" as="targetPoint" />
+              <Array as="points">
+                <mxPoint x="380" y="90" />
+                <mxPoint x="380" y="90" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object About="Link Port" label="1" id="5UMHE88EWMGOHEUAE1WY-13">
+          <gunns type="Port" />
+          <mxCell style="endArrow=none;html=1;fontSize=9;fontColor=#99CCFF;jumpStyle=arc;edgeStyle=orthogonalEdgeStyle;exitX=1.0;exitY=0.5;rounded=0;" parent="5UMHE88EWMGOHEUAE1WY-2" source="5UMHE88EWMGOHEUAE1WY-8" target="5UMHE88EWMGOHEUAE1WY-4" edge="1">
+            <mxGeometry x="-0.8" width="50" height="50" relative="1" as="geometry">
+              <mxPoint x="-200" y="-240" as="sourcePoint" />
+              <mxPoint x="-180" y="-240" as="targetPoint" />
+              <Array as="points">
+                <mxPoint x="570" y="90" />
+                <mxPoint x="570" y="90" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object About="Link Port" label="0" id="5UMHE88EWMGOHEUAE1WY-15">
+          <gunns type="Port" />
+          <mxCell style="endArrow=none;html=1;fontSize=9;fontColor=#99CCFF;jumpStyle=arc;edgeStyle=orthogonalEdgeStyle;exitX=0.0;exitY=0.5;rounded=0;" parent="5UMHE88EWMGOHEUAE1WY-2" source="5UMHE88EWMGOHEUAE1WY-9" target="5UMHE88EWMGOHEUAE1WY-4" edge="1">
+            <mxGeometry x="-0.8" width="50" height="50" relative="1" as="geometry">
+              <mxPoint x="-200" y="-240" as="sourcePoint" />
+              <mxPoint x="-180" y="-240" as="targetPoint" />
+              <Array as="points">
+                <mxPoint x="670" y="90" />
+                <mxPoint x="670" y="90" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object About="Thermal Potential" Ports="1=node" c00.defaultConductivity="1e15" i00.malfBlockageFlag="false" i01.malfBlockageValue="0.0" i02.sourcePotential="500" label="Higher" id="OuQL4367HmKvvJFcRHPq-1">
+          <gunns numPorts="2" reqPorts="1" subtype="aspects/thermal/GunnsThermalPotential" type="Link" />
+          <mxCell style="verticalLabelPosition=bottom;align=center;html=1;verticalAlign=top;shape=stencil(pVTLboMwEPwarhXYJD1X9HGLKlX9AJdsi1VjW7YTkr/vhoUGl4dEI3HZGY9nGC0kvPCVsJCwVHgLZUj4Y8LYUTgpPhTCDJmKwDylUYsaCHl53+3eEHk1AXSQQtEBH5z5hkbuQ6eUugInA7ENYdv2Nv6UpA8IXh5elEZrzCCN9hEz4PFuIXWIYphDd7VFlxoCOMK7vCeaMprOHXe3aefnPxEQmUvBi0/j4MuZg95PxgOlpPUwbqyJxz5QGieayPNrLJWiVudOWHEpe0T0dG2OcHXexM4L1r1eST3Qb1frS2X8bHbEZ+Ljdi6+9XDTsObrxrGFMldVlfHbqmKr9bE/v7/NP1+tj/1zFumzqa9m0T/Ws3n9f/ag1Yy+yhal31oL/AA=);strokeColor=#000000;strokeWidth=1;fontSize=12;fontColor=#000000;fillColor=#FFFFFF;" parent="5UMHE88EWMGOHEUAE1WY-2" vertex="1">
+            <mxGeometry x="90" y="70" width="60" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object About="Thermal Potential" Ports="1=node" c00.defaultConductivity="1e15" i00.malfBlockageFlag="false" i01.malfBlockageValue="0.0" i02.sourcePotential="300" label="Lower" id="OuQL4367HmKvvJFcRHPq-2">
+          <gunns numPorts="2" reqPorts="1" subtype="aspects/thermal/GunnsThermalPotential" type="Link" />
+          <mxCell style="verticalLabelPosition=bottom;align=center;html=1;verticalAlign=top;shape=stencil(pVTLboMwEPwarhXYJD1X9HGLKlX9AJdsi1VjW7YTkr/vhoUGl4dEI3HZGY9nGC0kvPCVsJCwVHgLZUj4Y8LYUTgpPhTCDJmKwDylUYsaCHl53+3eEHk1AXSQQtEBH5z5hkbuQ6eUugInA7ENYdv2Nv6UpA8IXh5elEZrzCCN9hEz4PFuIXWIYphDd7VFlxoCOMK7vCeaMprOHXe3aefnPxEQmUvBi0/j4MuZg95PxgOlpPUwbqyJxz5QGieayPNrLJWiVudOWHEpe0T0dG2OcHXexM4L1r1eST3Qb1frS2X8bHbEZ+Ljdi6+9XDTsObrxrGFMldVlfHbqmKr9bE/v7/NP1+tj/1zFumzqa9m0T/Ws3n9f/ag1Yy+yhal31oL/AA=);strokeColor=#000000;strokeWidth=1;fontSize=12;fontColor=#000000;fillColor=#FFFFFF;direction=west;" parent="5UMHE88EWMGOHEUAE1WY-2" vertex="1">
+            <mxGeometry x="930" y="70" width="60" height="40" as="geometry" />
+          </mxCell>
+        </object>
+        <object About="Link Port" label="1" id="OuQL4367HmKvvJFcRHPq-3">
+          <gunns type="Port" />
+          <mxCell style="endArrow=none;html=1;fontSize=9;fontColor=#99CCFF;jumpStyle=arc;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="5UMHE88EWMGOHEUAE1WY-2" source="5UMHE88EWMGOHEUAE1WY-9" target="OuQL4367HmKvvJFcRHPq-4" edge="1">
+            <mxGeometry width="50" height="50" relative="1" as="geometry">
+              <mxPoint x="840" y="150" as="sourcePoint" />
+              <mxPoint x="850" y="90" as="targetPoint" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+        <object About="Basic Node" i00.potential="0" label="2" id="OuQL4367HmKvvJFcRHPq-4">
+          <gunns subtype="Basic" type="Node" />
+          <mxCell style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="5UMHE88EWMGOHEUAE1WY-2" vertex="1">
+            <mxGeometry x="860" y="80" width="20" height="20" as="geometry" />
+          </mxCell>
+        </object>
+        <object About="Link Port" label="1" id="OuQL4367HmKvvJFcRHPq-5">
+          <gunns type="Port" />
+          <mxCell style="endArrow=none;html=1;fontSize=9;fontColor=#99CCFF;jumpStyle=arc;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;exitDx=0;exitDy=0;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="5UMHE88EWMGOHEUAE1WY-2" source="OuQL4367HmKvvJFcRHPq-4" target="OuQL4367HmKvvJFcRHPq-2" edge="1">
+            <mxGeometry width="50" height="50" relative="1" as="geometry">
+              <mxPoint x="870" y="140" as="sourcePoint" />
+              <mxPoint x="930" y="140" as="targetPoint" />
+            </mxGeometry>
+          </mxCell>
+        </object>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
