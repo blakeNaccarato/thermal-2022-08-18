@@ -48,14 +48,13 @@ from gunns_sims.networks import get_mass_of_chain
     ],
 )
 def test_get_mass_of_chain(label, total_length, nodes, expected):
-
     cross_sectional_area = Q(1)
     density = Q(1)
 
     nodes = get_mass_of_chain(nodes, total_length, cross_sectional_area, density)
 
     total_mass = total_length * cross_sectional_area * density
-    with (nodes.context("mass"), expected.context("mass")):
+    with nodes.context("mass"), expected.context("mass"):
         for key in nodes.keys():
             assert nodes[key] == expected[key]
         assert sum(nodes.values()) == total_mass

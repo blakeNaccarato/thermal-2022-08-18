@@ -15,7 +15,6 @@ test = Node(label="well", pos=(0, 0))
 
 
 def test_thing():
-
     context_dict = ContextDict(
         hello=Node("well", (0, 0)),
         world=Node("quell", (1, 1)),
