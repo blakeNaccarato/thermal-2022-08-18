@@ -27,11 +27,9 @@ class SupportsDataDictAtRuntime(SupportsDataclass, Protocol):
 
     Enforced at runtime due to the dynamic nature of dataclasses."""
 
-    def __getitem__(self, __k, __v):
-        ...
+    def __getitem__(self, __k, __v): ...
 
-    def __setitem__(self, __k, __v):
-        ...
+    def __setitem__(self, __k, __v): ...
 
 
 class ContextDict(UserDict[str, Any]):

@@ -55,7 +55,7 @@ def test_get_mass_of_chain(label, total_length, nodes, expected):
     nodes = get_mass_of_chain(nodes, total_length, cross_sectional_area, density)
 
     total_mass = total_length * cross_sectional_area * density
-    with (nodes.context("mass"), expected.context("mass")):
+    with nodes.context("mass"), expected.context("mass"):
         for key in nodes.keys():
             assert nodes[key] == expected[key]
         assert sum(nodes.values()) == total_mass
